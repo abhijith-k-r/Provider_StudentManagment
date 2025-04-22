@@ -133,3 +133,38 @@ class GridviewScreen extends StatelessWidget {
     );
   }
 }
+
+
+// ! Top Horizontal ListView Screen 
+
+class HorizontalListvieScreen extends StatelessWidget {
+  StudentsListProvider value;
+  HorizontalListvieScreen({super.key, required this.value});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+        scrollDirection: Axis.horizontal,
+        shrinkWrap: true,
+        itemCount: value.studdents.length,
+        itemBuilder: (context, index) {
+          final student = value.studdents[index];
+          return Padding(
+            padding: const EdgeInsets.all(10),
+            child: CircleAvatar(
+              backgroundColor: red,
+              radius: 35,
+              backgroundImage: student.imageFile != null
+                  ? FileImage(student.imageFile!)
+                  : null,
+              child: student.imageFile == null
+                  ? Icon(
+                      Icons.person,
+                      size: 35,
+                    )
+                  : null,
+            ),
+          );
+        });
+  }
+}

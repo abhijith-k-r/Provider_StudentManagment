@@ -3,9 +3,11 @@ import 'package:p_student_management/models/studentmodel.dart';
 
 class StudentsListProvider extends ChangeNotifier {
   final List<Studentmodel> _students = [];
-  List<Studentmodel> get studdents => _students;
+  List<Studentmodel> _filteredStudents = [];
+  List<Studentmodel> get studdents =>
+      _filteredStudents.isNotEmpty ? _filteredStudents : _students;
 
-   bool _isGridView = false;
+  bool _isGridView = false;
   bool get isGreidView => _isGridView;
 
   void toggleView() {
@@ -30,6 +32,22 @@ class StudentsListProvider extends ChangeNotifier {
 
   void deleteStudent(Studentmodel student) {
     _students.removeWhere((s) => s.rollNumber == student.rollNumber);
+    notifyListeners();
+  }
+
+  void searchStudents(String query) {
+    if (query.isEmpty) {
+      _filteredStudents = [];
+    } else {
+      _filteredStudents = _students.where((student) {
+        return student.name.toLowerCase().contains(query.toLowerCase());
+      }).toList();
+    }
+    notifyListeners();
+  }
+
+  void clearSearch() {
+    _filteredStudents = [];
     notifyListeners();
   }
 }

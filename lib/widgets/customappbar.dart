@@ -8,6 +8,8 @@ class CustomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   final List<Widget>? actions;
   final Widget? title;
   final bool? centerTitle;
+  final double height;
+  final PreferredSizeWidget? bottom;
 
   const CustomeAppBar({
     super.key,
@@ -18,6 +20,8 @@ class CustomeAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.actions,
     this.title,
     this.centerTitle,
+    this.height = kTextTabBarHeight,
+    this.bottom,
   });
 
   @override
@@ -30,9 +34,13 @@ class CustomeAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: actions,
       title: title,
       centerTitle: centerTitle,
+      bottom: bottom,
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+  Size get preferredSize {
+    final additionalHeight = bottom?.preferredSize.height ?? 0;
+    return Size.fromHeight(height + additionalHeight);
+  }
 }
