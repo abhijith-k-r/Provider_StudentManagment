@@ -58,6 +58,7 @@ void showDeleteConfirmation(BuildContext context, Studentmodel student) {
             provider.deleteStudent(student);
 
             Navigator.pop(context);
+
             if (Navigator.canPop(context)) {
               Navigator.pop(context);
             }

@@ -5,6 +5,14 @@ class StudentsListProvider extends ChangeNotifier {
   final List<Studentmodel> _students = [];
   List<Studentmodel> get studdents => _students;
 
+   bool _isGridView = false;
+  bool get isGreidView => _isGridView;
+
+  void toggleView() {
+    _isGridView = !_isGridView;
+    notifyListeners();
+  }
+
   void addStudent(Studentmodel student) {
     _students.add(student);
     notifyListeners();

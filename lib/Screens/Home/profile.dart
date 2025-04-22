@@ -52,11 +52,14 @@ class ProfileScreen extends StatelessWidget {
                 icon: Icon(Icons.more_vert_rounded, color: red),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
-                onCanceled: () {
-                  showDeleteConfirmation(context, student);
+                onSelected: (value) {
+                  if (value == 1) {
+                    showDeleteConfirmation(context, student);
+                  }
                 },
                 itemBuilder: (context) => [
                   PopupMenuItem(
+                    value: 1,
                     child: Row(
                       children: [
                         Icon(Icons.delete, color: red),

@@ -12,10 +12,7 @@ import 'package:p_student_management/widgets/bottomsheetwidget.dart';
 class EditStudentBottomSheet extends StatelessWidget {
   final Studentmodel student;
 
-  const EditStudentBottomSheet({
-    super.key,
-    required this.student,
-  });
+  const EditStudentBottomSheet({super.key, required this.student});
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +49,7 @@ class _EditStudentBottomSheetContent extends StatelessWidget {
       ),
       child: Column(
         children: [
-          // Handle bar
+          // !Handle bar
           Container(
             margin: const EdgeInsets.only(top: 10),
             width: 40,
@@ -63,7 +60,7 @@ class _EditStudentBottomSheetContent extends StatelessWidget {
             ),
           ),
 
-          // Progress indicators
+          //! Progress indicators
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 15),
             child: Row(
@@ -83,7 +80,7 @@ class _EditStudentBottomSheetContent extends StatelessWidget {
             ),
           ),
 
-          // Title with edit and delete options
+          //! Title with edit and delete options
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(
@@ -98,23 +95,12 @@ class _EditStudentBottomSheetContent extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Row(
-                  children: [
-                    // Delete button
-                    IconButton(
-                      icon: Icon(Icons.delete, color: red),
-                      onPressed: () {
-                        showDeleteConfirmation(context, student);
-                      },
-                    ),
-                    Text(
-                      "Step ${formProvider.currntStep + 1}/2",
-                      style: GoogleFonts.roboto(
-                        fontSize: 14,
-                        color: grey[600],
-                      ),
-                    ),
-                  ],
+                Text(
+                  "Step ${formProvider.currntStep + 1}/2",
+                  style: GoogleFonts.roboto(
+                    fontSize: 14,
+                    color: grey[600],
+                  ),
                 ),
               ],
             ),
@@ -122,7 +108,7 @@ class _EditStudentBottomSheetContent extends StatelessWidget {
 
           const SizedBox(height: 20),
 
-          // Form content
+          //! Form content
           Expanded(
             child: Form(
               key: formProvider.formkey,
@@ -149,7 +135,7 @@ class _EditStudentBottomSheetContent extends StatelessWidget {
             ),
           ),
 
-          // Navigation buttons
+          //! Navigation buttons
           Padding(
             padding: const EdgeInsets.all(20),
             child: Row(

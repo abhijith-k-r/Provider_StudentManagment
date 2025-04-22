@@ -17,7 +17,7 @@ Widget buildStep1(
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      // Photo picker
+      //! Photo picker
       Center(
         child: GestureDetector(
           onTap: pickImage,
@@ -67,7 +67,7 @@ Widget buildStep1(
 
       const SizedBox(height: 25),
 
-      // Full Name
+      //! Full Name
       buildTextField(
         label: "Full Name",
         hint: "Enter student name",
@@ -82,7 +82,7 @@ Widget buildStep1(
 
       const SizedBox(height: 15),
 
-      // Roll Number
+      //! Roll Number
       buildTextField(
         label: "Roll Number",
         hint: "Enter roll number",
@@ -98,7 +98,7 @@ Widget buildStep1(
 
       const SizedBox(height: 15),
 
-      // Admission Number
+      //! Admission Number
       buildTextField(
         label: "Phone Number",
         hint: "Enter Phone number",
@@ -189,7 +189,7 @@ Widget buildStep2(
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      // Email
+      //! Email
       buildTextField(
         label: "Email",
         hint: "Enter email address",
@@ -207,7 +207,7 @@ Widget buildStep2(
 
       const SizedBox(height: 15),
 
-      // Date of Birth
+      //! Date of Birth
       buildDateField(
         label: "Date of Birth",
         hint: dateOfBirth != null

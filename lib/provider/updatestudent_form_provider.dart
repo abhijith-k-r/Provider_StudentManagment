@@ -33,6 +33,8 @@ class EditStudentProvider extends ChangeNotifier {
   Studentmodel get initialStudent => _initialStudent;
   bool get imageChanged => _imageChanged;
 
+
+
   void initialzeWithStudent(Studentmodel student) {
     _initialStudent = student;
     _nameController.text = student.name;
@@ -123,6 +125,3 @@ class EditStudentProvider extends ChangeNotifier {
     super.dispose();
   }
 }
-
-
-

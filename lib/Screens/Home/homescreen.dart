@@ -1,9 +1,10 @@
-// ignore_for_file: unnecessary_null_comparison
+// ignore_for_file: unnecessary_null_comparison, must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:p_student_management/Screens/Home/profile.dart';
 import 'package:p_student_management/colors/appcolors.dart';
 import 'package:p_student_management/provider/provider.dart';
+import 'package:p_student_management/widgets/listvie_gridview_screens.dart';
 import 'package:p_student_management/widgets/popupdialogues.dart';
 import 'package:p_student_management/widgets/customappbar.dart';
 import 'package:provider/provider.dart';
@@ -22,6 +23,19 @@ class Homescreen extends StatelessWidget {
         backgroundColor: white,
         shadowColor: grey,
         elevation: 1,
+        actions: [
+          Consumer<StudentsListProvider>(
+            builder: (context, value, child) {
+              return IconButton(
+                  onPressed: () {
+                    value.toggleView();
+                  },
+                  icon: value.isGreidView
+                      ? Icon(Icons.grid_view_rounded)
+                      : Icon(Icons.list));
+            },
+          )
+        ],
       ),
       body: Consumer<StudentsListProvider>(builder: (context, value, child) {
         return value.studdents.isEmpty
@@ -60,55 +74,10 @@ class Homescreen extends StatelessWidget {
                             );
                           }),
                     ),
-                    ListView.builder(
-                      physics: NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: value.studdents.length,
-                      itemBuilder: (context, index) {
-                        final student = value.studdents[index];
-                        return Padding(
-                          padding: const EdgeInsets.fromLTRB(10, 0, 10, 5),
-                          child: Card(
-                            color: white,
-                            child: InkWell(
-                              onLongPress: () {
-                                showDeleteConfirmation(context, student);
-                              },
-                              onTap: () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (ctx) => ProfileScreen(
-                                            student: student,
-                                          ))),
-                              child: ListTile(
-                                leading: CircleAvatar(
-                                  radius: 35,
-                                  backgroundColor: red,
-                                  backgroundImage: student.imageFile != null
-                                      ? FileImage(student.imageFile!)
-                                      : null,
-                                  child: student.imageFile == null
-                                      ? Icon(
-                                          Icons.person,
-                                          size: 35,
-                                        )
-                                      : null,
-                                ),
-                                title: Text(student.name,
-                                    style: GoogleFonts.roboto(
-                                      fontSize: 20,
-                                    )),
-                                subtitle: Text(student.email,
-                                    style: GoogleFonts.roboto(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500,
-                                        color: red)),
-                              ),
-                            ),
-                          ),
-                        );
-                      },
-                    ),
+                    Consumer<StudentsListProvider>(
+                        builder: (context, value, child) => value.isGreidView
+                            ? GridviewScreen(value: value)
+                            : ListviewScreeen(value: value))
                   ],
                 ),
               );
@@ -127,3 +96,4 @@ class Homescreen extends StatelessWidget {
     );
   }
 }
+

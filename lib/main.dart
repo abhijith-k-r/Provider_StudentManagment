@@ -27,7 +27,6 @@ class MyApp extends StatelessWidget {
           '/':(context) => Splashscreen(),
           '/home':(context)=> Homescreen(),
         },
-        // home: Splashscreen(),
       ),
     );
   }
